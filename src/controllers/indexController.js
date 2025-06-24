@@ -1,6 +1,7 @@
 const userQueries = require("../db/userQueries");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
+const passport = require("../authentication/passport");
 
 const indexController = {
   index: (req, res) => {
@@ -28,8 +29,17 @@ const indexController = {
   getLoginPage: (req, res) => {
     res.render("login", { title: "Login Form" });
   },
-  login: (req, res) => {
-    res.redirect("/");
+  login: passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+  }),
+  logout: (req, res, next) => {
+    req.logout((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect("/");
+    });
   },
 };
 

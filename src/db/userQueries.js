@@ -14,6 +14,38 @@ const createUser = async ({ firstName, lastName, email, hashedPassword }) => {
   }
 };
 
+const getUserById = async (id) => {
+  console.log("Getting user by id");
+  try {
+    const { rows } = await pool.query(
+      "SELECT * FROM members_only.users WHERE id = $1",
+      [id],
+    );
+    console.log("User found ", rows.length);
+    return rows[0];
+  } catch (error) {
+    console.log("Error getting user by id: ", error);
+    throw error;
+  }
+};
+
+const getUserByEmail = async (email) => {
+  console.log("Getting user by email");
+  try {
+    const { rows } = await pool.query(
+      "SELECT * FROM members_only.users WHERE email = $1",
+      [email],
+    );
+    console.log("User found ", rows.length);
+    return rows[0];
+  } catch (error) {
+    console.log("Error getting user by email: ", error);
+    throw error;
+  }
+};
+
 module.exports = {
   createUser,
+  getUserByEmail,
+  getUserById,
 };

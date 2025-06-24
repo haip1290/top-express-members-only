@@ -16,15 +16,16 @@
         <li><a href="/">Home</a></li>
         <li><a href="/register">Register</a></li>
         <li><a href="/login">Login</a></li>
+        <li><a href="/logout">Logout</a></li>
       </ul>
-      <% if(user) { %>
-      <p>Welcome to our exclusive clubhouse.</p>
-      <% } else { %>
-      <p>
-        Please <a href="/register">register</a> and enter the secret code to
-        become a member or <a href="/login">login</a> to access the clubhouse.
-      </p>
-      <% } %>
     </nav>
+    <% if(user) { %>
+    <p>Welcome to our exclusive clubhouse.</p>
+    <% } else { %>
+    <p>
+      Please <a href="/register">register</a> and enter the secret code to
+      become a member or <a href="/login">login</a> to access the clubhouse.
+    </p>
+    <% } %>
   </body>
 </html>
