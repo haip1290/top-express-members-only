@@ -16,3 +16,5 @@ create table members_only.messages (
 );
 
 select * from members_only.users;
+
+insert into members_only.messages (title, content, user_id) values ('test', 'test', 1);

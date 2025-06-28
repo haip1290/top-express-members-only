@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%=title%></title>
+  </head>
+  <body>
+    <h1><%=title%></h1>
+    <p>
+      Hi <%=user.first_name%> <%=user.last_name%>!!! Are you ready to become our
+      member? Enter the secret below
+    </p>
+    <%-include("partials/errors.ejs")%>
+    <form method="post" action="/users/<%=user.id%>/join-club">
+      <label for="secret">Secret:</label>
+      <input type="text" id="secret" name="secret" />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

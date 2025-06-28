@@ -11,15 +11,42 @@
   </head>
   <body>
     <h1><%= title %></h1>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Log in</a></li>
+      </ul>
+    </nav>
+    <%- include("partials/errors.ejs") %>
     <form action="/register" method="post">
       <label for="firstName">First name:</label>
-      <input type="text" name="firstName" id="firstName" required />
+      <input
+        type="text"
+        name="firstName"
+        id="firstName"
+        value="<%= formData.firstName %>"
+        required
+      />
       <label for="lastName">Last name:</label>
-      <input type="text" name="lastName" id="lastName" required />
+      <input
+        type="text"
+        name="lastName"
+        id="lastName"
+        value="<%= formData.lastName %>"
+        required
+      />
       <label for="email">Email:</label>
-      <input type="email" name="email" id="email" required />
+      <input
+        type="email"
+        name="email"
+        id="email"
+        value="<%= formData.email %>"
+        required
+      />
       <label for="password">Password:</label>
       <input type="password" name="password" id="password" required />
+      <label for="confirm-pw">Confirm Password:</label>
+      <input type="password" name="confirmPw" id="confirm-pw" required />
       <button type="submit">Register</button>
     </form>
   </body>

@@ -16,16 +16,36 @@
         <li><a href="/">Home</a></li>
         <li><a href="/register">Register</a></li>
         <li><a href="/login">Login</a></li>
-        <li><a href="/logout">Logout</a></li>
       </ul>
     </nav>
     <% if(user) { %>
-    <p>Welcome to our exclusive clubhouse.</p>
+    <h4>Welcome to our clubhouse!</h4>
+    <a href="/users/<%=user.id%>/create-message">Create a new message</a>
+    <p>
+      Do you want to <a href="/joinClub">join our club</a>? Exclusive members
+      have access to the clubhouse's private information.
+    </p>
+    <% if(messages) { %>
+    <%-include("partials/errors.ejs")%>
+    <ul>
+      <% messages.forEach((message)=>{ %>
+      <li>
+        <h3><%=message.title%></h3>
+        <p><%=message.content%></p>
+        <p><%=message.createdAt%></p>
+        <p><%=message.author%></p>
+      </li>
+      <%}) %>
+    </ul>
+    <% } %>
+    <div><a href="users/<%=user.id%>/join-club">Join the club</a></div>
+    <div><a href="/logout">Log out</a></div>
     <% } else { %>
     <p>
-      Please <a href="/register">register</a> and enter the secret code to
-      become a member or <a href="/login">login</a> to access the clubhouse.
+      Please <a href="/login">log in</a> to access the clubhouse's messages. If
+      you do not have an account, please <a href="/register">register</a>.
     </p>
+    <p></p>
     <% } %>
   </body>
 </html>

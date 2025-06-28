@@ -44,8 +44,23 @@ const getUserByEmail = async (email) => {
   }
 };
 
+const updateUserMemberStatusById = async (id, isMemberStatus) => {
+  console.log("Updating user member status");
+  try {
+    const { rowCount } = await pool.query(
+      "update members_only.users set is_member = $1 where id = $2",
+      [isMemberStatus, id],
+    );
+    console.log(`${rowCount} User updated`);
+  } catch (error) {
+    console.log("Error updating user member status: ", error);
+    throw error;
+  }
+};
+
 module.exports = {
   createUser,
   getUserByEmail,
   getUserById,
+  updateUserMemberStatusById,
 };

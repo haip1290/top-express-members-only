@@ -5,8 +5,10 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const session = require("express-session");
+const flash = require("connect-flash");
 const passport = require("./authentication/passport");
 const indexRouter = require("./routers/indexRouter");
+const usersRouter = require("./routers/usersRouter");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -24,10 +26,12 @@ app.use(
 );
 
 app.use(passport.session());
+app.use(flash());
 
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/", indexRouter);
+app.use("/users", usersRouter);
 
 app.use((err, req, res, next) => {
   console.log(err.stack);
