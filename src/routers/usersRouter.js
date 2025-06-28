@@ -27,4 +27,10 @@ router.post(
   usersController.changeMemberStatus,
 );
 
+router.post(
+  "/delete-message/:messageId",
+  isAuthenticated,
+  usersController.deleteMessage,
+);
+
 module.exports = router;

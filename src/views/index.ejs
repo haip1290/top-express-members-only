@@ -25,6 +25,9 @@
       Do you want to <a href="/joinClub">join our club</a>? Exclusive members
       have access to the clubhouse's private information.
     </p>
+    <% if(user.isadmin){%>
+    <h2>Hi Admin</h2>
+    <%}%>
     <% if(messages) { %>
     <%-include("partials/errors.ejs")%>
     <ul>
@@ -32,9 +35,21 @@
       <li>
         <h3><%=message.title%></h3>
         <p><%=message.content%></p>
+        <% if(user.is_member) {%>
         <p><%=message.createdAt%></p>
         <p><%=message.author%></p>
+        <%} else {%>
+        <p>Anonymous</p>
+        <%}%>
       </li>
+      <% if(user.isadmin){%>
+      <li>
+        <form method="post" action="/users/delete-message/<%=message.id%>">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+      <%}%>
+
       <%}) %>
     </ul>
     <% } %>

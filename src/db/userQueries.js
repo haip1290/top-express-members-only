@@ -58,9 +58,24 @@ const updateUserMemberStatusById = async (id, isMemberStatus) => {
   }
 };
 
+const updateUserIsAdminById = async (id, isAdmin) => {
+  console.log("Updating user to be admin");
+  try {
+    const { rowCount } = await pool.query(
+      "update members_only.users set isadmin = $1 where id = $2",
+      [isAdmin, id],
+    );
+    console.log(`${rowCount} User updated`);
+  } catch (error) {
+    console.log("Error updating user to be admin: ", error);
+    throw error;
+  }
+};
+
 module.exports = {
   createUser,
   getUserByEmail,
   getUserById,
   updateUserMemberStatusById,
+  updateUserIsAdminById,
 };

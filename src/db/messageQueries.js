@@ -41,4 +41,22 @@ const getMessagesByPageAndLimit = async ({ page, limit }) => {
   }
 };
 
-module.exports = { createMessage, getMessagesByPageAndLimit };
+const deleteMessageById = async (id) => {
+  console.log("Querying to delete message by id ", id);
+  try {
+    const { rowCount } = await pool.query(
+      "delete from members_only.messages where id = $1",
+      [id],
+    );
+    console.log(`${rowCount} message deleted`);
+  } catch (error) {
+    console.log("Error deleting message by id: ", error);
+    throw error;
+  }
+};
+
+module.exports = {
+  createMessage,
+  getMessagesByPageAndLimit,
+  deleteMessageById,
+};

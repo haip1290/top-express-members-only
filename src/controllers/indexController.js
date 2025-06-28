@@ -63,6 +63,7 @@ const convertMessagesToDTO = async (messages, isMember) => {
           ? `${user.first_name} ${user.last_name}`
           : "anonymous";
         return {
+          id: message.id,
           title: message.title,
           content: message.content,
           createdAt: message.created_at,
@@ -71,6 +72,7 @@ const convertMessagesToDTO = async (messages, isMember) => {
       } catch (error) {
         console.log("Error getting user by id: ", error);
         return {
+          id: message.id,
           title: message.title,
           content: message.content,
           createdAt: message.created_at,
